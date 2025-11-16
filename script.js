@@ -1,10 +1,8 @@
-let oras=document.getElementById("city_region_input")
 let input=document.getElementById("input")
 let search=document.getElementById("search")
 let div_nou=document.getElementById("div_nou")
 let API_KEY="a7a84aff4809fbb8b11e3b6ed4fe595b"
-let city="Brasil"
-async function weather(){
+async function weather(city){
     let raspuns=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=ro`)
     let data=await raspuns.json()
     console.log(data)
@@ -34,4 +32,8 @@ async function weather(){
                 </div>
             </div>`
 }
-weather()
+search.addEventListener("click",()=>{
+    let city=input.value
+    weather(city)
+    input.value=""
+})
